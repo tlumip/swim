@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+
+<project name="tlumip" default="release" basedir=".">
+
+    <!-- Compile -->
+    <target name="build">
+        <javac srcdir="src/java"
+            destdir="build/classes" 
+            includes="**/*" 
+            debug="on"
+            optimize="off" 
+            deprecation="off">
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+
+    <!-- Make a jar file with all classes and zip files combined -->
+    <target name="makejar" depends="build">
+    
+        <mkdir dir="release"/>
+        <delete file="release/${ant.project.name}.jar"/>
+    
+        <jar update="true" destfile="release/${ant.project.name}.jar">
+            <fileset dir="build/classes"/>
+            <zipgroupfileset dir="${basedir}" includes="lib/*.zip,lib/*.jar"/>
+        </jar>
+    </target>
+
+    <!-- ********************************************************* -->
+    <!-- Setup the classpath -->
+    <path id="compile.classpath">
+    	
+    	<fileset dir="${basedir}">
+    	  <include name="src/censusdata.jar"/>
+    	  <include name="src/common-base.jar"/>
+    	  <include name="src/log4j-1.2.9.jar"/>
+    	  <include name="src/pecas.jar"/>
+    	  <include name="src/reference.jar"/>
+    	  <include name="src/synpop.jar"/>
+    	  <include name="src/utils.jar"/>
+    	  <include name="src/common-daf-v2.jar"/>
+    	  <include name="src/common-daf-v3.jar"/>
+    	</fileset>
+
+    </path>
+
+    <!-- ********************************************************* -->
+    <!-- Create a set of jar files for release -->
+    <target name="release" depends="makejar">
+    	
+        <!-- copy dependencies to release directory -->
+        <copy file="src/common-base.jar" todir="release"/>
+        <copy file="src/reference.jar" todir="release"/>
+        <copy file="src/common-daf-v2.jar" todir="release"/>
+    	  <copy file="src/common-daf-v3.jar" todir="release"/>
+        <copy file="src/pecas.jar" todir="release"/>
+        <copy file="src/censusdata.jar" todir="release"/>
+        <copy file="src/utils.jar" todir="release"/>
+        <copy file="src/pasaat.jar" todir="release"/>
+        <copy file="src/synpop.jar" todir="release"/>
+        <copy file="src/log4j-1.2.9.jar" todir="release"/>
+      
+        <zip destfile="release/tlumip2.jar">
+          <zipgroupfileset dir="release" includes="tlumip.jar"/>
+          <zipgroupfileset dir="release" includes="common-base.jar"/>
+          <zipgroupfileset dir="release" includes="reference.jar"/>
+          <zipgroupfileset dir="release" includes="common-daf-v2.jar"/>
+          <zipgroupfileset dir="release" includes="common-daf-v3.jar"/>
+          <zipgroupfileset dir="release" includes="pecas.jar"/>
+          <zipgroupfileset dir="release" includes="censusdata.jar"/>
+          <zipgroupfileset dir="release" includes="utils.jar"/>
+          <zipgroupfileset dir="release" includes="pasaat.jar"/>
+          <zipgroupfileset dir="release" includes="synpop.jar"/>
+          <zipgroupfileset dir="release" includes="log4j-1.2.9.jar"/>
+        </zip>
+        <move file="release/tlumip2.jar" tofile="release/tlumip.jar"/>
+
+    </target>
+
+</project>
