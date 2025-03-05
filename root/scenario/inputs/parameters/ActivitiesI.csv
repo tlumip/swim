@@ -1,0 +1,182 @@
+Activity,ActivityType,LocationDispersionParameter,SizeTermCoefficient,ProductionSubstitutionNesting,InertiaTermCoefficient,InertiaTermConstant,ImporterExporter,Units,FSC Unconstrained,ConstInExchangeSize
+RES_agmin_ag,Industries,0.307,1,0.307,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+RES_forst_log,Industries,0.307,1,0.307,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+RES_offc_off,Industries,4.48,1,4.48,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+ENGY_elec_hi,Industries,7.86,1,7.86,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+ENGY_ngas_hi,Industries,7.86,1,7.86,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+ENGY_ptrl_hi,Industries,7.86,1,7.86,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+ENGY_offc_off,Industries,4.48,1,4.48,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+CNST_main_xxx,Industries,4.49,1,4.49,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+CNST_nres_xxx,Industries,4.49,1,4.49,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+CNST_othr_xxx,Industries,4.49,1,4.49,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+CNST_res_xxx,Industries,4.49,1,4.49,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+CNST_offc_off,Industries,4.49,1,4.49,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+MFG_food_hi,Industries,16.4,1,16.4,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+MFG_food_li,Industries,16.4,1,16.4,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+MFG_htec_hi,Industries,13.7,1,13.7,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+MFG_htec_li,Industries,13.7,1,13.7,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+MFG_hvtw_hi,Industries,13.7,1,13.7,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+MFG_hvtw_li,Industries,13.7,1,13.7,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+MFG_lvtw_hi,Industries,13.7,1,13.7,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+MFG_wdppr_hi,Industries,13.7,1,13.7,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+MFG_offc_off,Industries,4.93,1,4.93,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+WHSL_whsl_ware,Industries,7.12,1,7.12,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+WHSL_offc_off,Industries,4.48,1,4.48,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+RET_auto_ret,Industries,24.4,1,24.4,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+RET_stor_ret,Industries,24.4,1,24.4,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+RET_stor_off,Industries,4.48,1,4.48,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+RET_nstor_off,Industries,4.48,1,4.48,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+TRNS_trns_ware,Industries,7.86,1,7.86,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+TRNS_trns_off,Industries,4.48,1,4.48,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+INFO_info_off_li,Industries,12.3,1,12.3,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+INFO_info_off,Industries,12.3,1,12.3,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+UTL_othr_off_li,Industries,4.48,1,4.48,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+UTL_othr_off,Industries,4.48,1,4.48,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+FIRE_fnin_off,Industries,28.3,1,28.3,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+FIRE_real_off,Industries,28.3,1,28.3,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+HLTH_hosp_hosp,Industries,5.19,1,5.19,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+HLTH_care_inst,Industries,5.19,1,5.19,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+HLTH_othr_off_li,Industries,9.68,1,9.68,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+K12_k12_k12,Industries,14,1,14,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+K12_k12_off,Industries,40.2,1,40.2,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+HIED_hied_off_inst,Industries,5.88,1,5.88,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+ENT_ent_ret,Industries,1.5,1,1.5,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+HOSP_acc_acc,Industries,24.4,1,24.4,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+HOSP_eat_ret_acc,Industries,24.4,1,24.4,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+SERV_tech_off,Industries,12.3,1,12.3,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+SERV_site_li,Industries,12.3,1,12.3,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+SERV_home_xxx,Industries,13.7,1,13.7,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+SERV_bus_off,Industries,22.1,1,22.1,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+SERV_nonp_off_inst,Industries,12.3,1,12.3,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+SERV_stor_ret,Industries,22.1,1,22.1,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+GOV_admn_gov,Industries,3.94,1,3.94,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+GOV_offc_off,Industries,3.94,1,3.94,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+FGOV_acct_gov,Industries,3.94,1,3.94,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+SLGOV_acct_gov,Industries,3.94,1,3.94,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+CAP_acct_gov,Industries,3.94,1,3.94,0,1,Neither,Dollars of activity production/consumption,TRUE,TRUE
+HH0to8k1to2,Households,9.74E-04,1,9.74E-04,0,1,Neither,Households,FALSE,TRUE
+HH0to8k3plus,Households,8.20E-04,1,8.20E-04,0,1,Neither,Households,FALSE,TRUE
+HH8to15k1to2,Households,6.30E-04,1,6.30E-04,0,1,Neither,Households,FALSE,TRUE
+HH8to15k3plus,Households,5.25E-04,1,5.25E-04,0,1,Neither,Households,FALSE,TRUE
+HH15to23k1to2,Households,4.31E-04,1,4.31E-04,0,1,Neither,Households,FALSE,TRUE
+HH15to23k3plus,Households,4.05E-04,1,4.05E-04,0,1,Neither,Households,FALSE,TRUE
+HH23to32k1to2,Households,3.80E-04,1,3.80E-04,0,1,Neither,Households,FALSE,TRUE
+HH23to32k3plus,Households,3.35E-04,1,3.35E-04,0,1,Neither,Households,FALSE,TRUE
+HH32to46k1to2,Households,3.10E-04,1,3.10E-04,0,1,Neither,Households,FALSE,TRUE
+HH32to46k3plus,Households,3.00E-04,1,3.00E-04,0,1,Neither,Households,FALSE,TRUE
+HH46to61k1to2,Households,2.80E-04,1,2.80E-04,0,1,Neither,Households,FALSE,TRUE
+HH46to61k3plus,Households,2.65E-04,1,2.65E-04,0,1,Neither,Households,FALSE,TRUE
+HH61to76k1to2,Households,2.50E-04,1,2.50E-04,0,1,Neither,Households,FALSE,TRUE
+HH61to76k3plus,Households,2.40E-04,1,2.40E-04,0,1,Neither,Households,FALSE,TRUE
+HH76to106k1to2,Households,2.35E-04,1,2.35E-04,0,1,Neither,Households,FALSE,TRUE
+HH76to106k3plus,Households,2.25E-04,1,2.25E-04,0,1,Neither,Households,FALSE,TRUE
+HH106kUp1to2,Households,1.00E-04,1,1.00E-04,0,1,Neither,Households,FALSE,TRUE
+HH106kUp3plus,Households,1.00E-04,1,1.00E-04,0,1,Neither,Households,FALSE,TRUE
+sctg01_fkp_lvsk_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg02_fkp_agri_cereal_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg03_fkp_agri_other_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg04_fkp_feed_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg05_fkp_food_meat_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg06_fkp_agri_grain_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg07_fkp_food_prep_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg08_fkp_food_alc_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg10_cms_clay_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg11_cms_sand_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg13_cms_mine_nonmet_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg14_cms_mine_met_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg15_pcc_coal_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg16_pcc_petr_crude_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg17_pcc_fuel_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg18_pcc_petr_oil_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg19_pcc_coal_prod_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg20_pcc_chem_basic_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg21_pcc_chem_pharma_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg22_pcc_chem_fert_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg23_pcc_chem_prod_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg24_pcc_petr_plast_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg25_fwp_logs_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg26_fwp_wood_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg27_ppp_papr_puplp_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg28_ppp_papr_paper_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg29_ppp_papr_print_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg30_oth_clth_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg31_cms_min_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg32_mit_metl_base_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg33_mit_metl_prod_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg34_mit_mach_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg35_mit_elct_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg36_mit_tran_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg37_mit_inst_transp_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg38_mit_inst_prec_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg39_oth_furn_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg40_oth_misc_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg41_waste_scrap_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+energy_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+retail_trade_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+transport_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+wholesale_trade_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+construction_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+communications_and_utilities_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+accommodations_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+personal_and_other_services_and_amusements_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+entertainment_services_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+food_services_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+higher_education_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+health_services_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+fire_business_and_professional_services_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+government_administration_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+education_reports_to_sponsors_impt,Importers,1,1,1,0,1,Importer,Dollars of activity production/consumption,FALSE,TRUE
+sctg01_fkp_lvsk_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg02_fkp_agri_cereal_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg03_fkp_agri_other_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg04_fkp_feed_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg05_fkp_food_meat_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg06_fkp_agri_grain_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg07_fkp_food_prep_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg08_fkp_food_alc_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg10_cms_clay_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg11_cms_sand_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg13_cms_mine_nonmet_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg14_cms_mine_met_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg15_pcc_coal_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg16_pcc_petr_crude_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg17_pcc_fuel_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg18_pcc_petr_oil_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg19_pcc_coal_prod_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg20_pcc_chem_basic_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg21_pcc_chem_pharma_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg22_pcc_chem_fert_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg23_pcc_chem_prod_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg24_pcc_petr_plast_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg25_fwp_logs_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg26_fwp_wood_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg27_ppp_papr_puplp_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg28_ppp_papr_paper_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg29_ppp_papr_print_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg30_oth_clth_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg31_cms_min_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg32_mit_metl_base_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg33_mit_metl_prod_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg34_mit_mach_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg35_mit_elct_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg36_mit_tran_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg37_mit_inst_transp_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg38_mit_inst_prec_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg39_oth_furn_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg40_oth_misc_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+sctg41_waste_scrap_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+energy_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+retail_trade_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+transport_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+wholesale_trade_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+construction_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+communications_and_utilities_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+accommodations_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+personal_and_other_services_and_amusements_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+entertainment_services_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+food_services_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+higher_education_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+health_services_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+fire_business_and_professional_services_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+government_administration_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
+education_reports_to_sponsors_expt,Exporters,1,1,1,0,1,Exporter,Dollars of activity production/consumption,FALSE,TRUE
