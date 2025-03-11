@@ -1741,7 +1741,7 @@ if __name__== "__main__":
         s.zonefieldVariables()
         s.assignLinkAzone()
         s.createModelInput()
-        s.assignLinkImpPenalty()
+        #s.assignLinkImpPenalty()
         s.writeZoneShapes()
         s.saveVersion()
         s.closeVisum()
