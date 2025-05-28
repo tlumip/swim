@@ -107,6 +107,7 @@ hourly_faf_trips <- hourly_faf_trips %>% mutate(value=exp_value)
 # exported, as well as a few new ones (including distance and travel time for
 # each trip)
 swimctr::export_trip_list(hourly_faf_trips, hourly_local_trips) %>%
+select(origin, tripStartTime, destination, everything()) %>%
 readr::write_csv(path=RTP[["ct.truck.trips"]])
 
 
