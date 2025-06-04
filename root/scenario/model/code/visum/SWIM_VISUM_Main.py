@@ -687,19 +687,19 @@ class SwimModel(object):
 
     def assignLinkImpPenalty(self):
       
-      print('Populate Link IMP_Penalty field with nearest penalties defined in global properties')
+      print('Populate Link IMP_PENALTY field with nearest penalties defined in global properties')
       
       #get link UDAs
       udaNames = []
       for i in self.Visum.Net.Links.Attributes.GetAll:
         if i.category=="User-defined attributes":
-          udaNames.append(i.Name)
-      if "IMP_Penalty" not in udaNames:
-        self.Visum.Net.Links.AddUserDefinedAttribute("IMP_Penalty","IMP_Penalty","IMP_Penalty",2,3, DefVal=self.imp_penalty_other_roads) #1=int, 2=float, 5=text
+          udaNames.append(i.Name.upper())
+      if "IMP_PENALTY" not in udaNames:
+        self.Visum.Net.Links.AddUserDefinedAttribute("IMP_PENALTY","IMP_PENALTY","IMP_PENALTY",2,3, DefVal=self.imp_penalty_other_roads) #1=int, 2=float, 5=text
     
       #assign each node to a zone and then select zone for closest ANODE or BNODE of link
       link_fn_class     = VisumHelpers.GetMulti(self.Visum.Net.Links, "PLANNO")
-      imp_penalty = VisumHelpers.GetMulti(self.Visum.Net.Links, "IMP_Penalty")
+      imp_penalty = VisumHelpers.GetMulti(self.Visum.Net.Links, "IMP_PENALTY")
       
       for i in range(len(link_fn_class)):
         if link_fn_class[i] in [1,11]:
@@ -711,7 +711,7 @@ class SwimModel(object):
         else:
             imp_penalty[i] = self.imp_penalty_other_roads
 
-      VisumHelpers.SetMulti(self.Visum.Net.Links, "IMP_Penalty", imp_penalty)
+      VisumHelpers.SetMulti(self.Visum.Net.Links, "IMP_PENALTY", imp_penalty)
 
     def createVizOutput(self):
         
