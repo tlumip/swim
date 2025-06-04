@@ -363,11 +363,23 @@ class ModuleCommands(object):
                        quote(property_file)]
             command = ' '.join(command)
             commands = [command]
+            python_file = properties_set['sl.ext.summary.table.python.file']
+            command = [quote(python_executable.replace('/','\\')),
+                       quote(python_file.replace('/','\\')),
+                       quote(property_file)]
+            command = [' '.join(command)]
+            commands = commands + command
         else:
             #java program
             command = self.runModule(module_set,scenario_outputs,property_file,year)
             if (('append' in property_file) or ('update' in property_file)):
                 commands = command + [' '.join(commands)]
+                python_file = properties_set['sl.ext.summary.table.python.file']
+                command = [quote(python_executable.replace('/','\\')),
+                           quote(python_file.replace('/','\\')),
+                           quote(property_file)]
+                command = [' '.join(command)]
+                commands = commands + command
             else:
                 commands = command
         return commands
