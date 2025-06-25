@@ -14,7 +14,10 @@ params:
   ref_db: "Q:/Projects/OR/Oregon DOT/SWIM_WOC7/Data/fromClient/Database/Ref26_NoFB.db"
   scenario_name: Reference
   facet: COUNTY
+  county_control_file: "../../../inputs/t0/county_controls.csv"
+  mpo_control_file: "../../../inputs/t0/mpo_controls.csv"
   diff_year: 2040
+  index_year: 2020
   use_leaflet: true
 editor_options: 
   chunk_output_type: console
@@ -23,6 +26,7 @@ editor_options:
 ```{r setup, echo = FALSE, message=FALSE, warning = FALSE}
 library(knitr)
 opts_chunk$set(echo = TRUE, fig.keep = TRUE, fig.path = params$fig.path)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 library(methods)
 library(tidyverse)
 library(DT)
@@ -48,19 +52,29 @@ facet <- params$facet
 facet_levels <-  c("Multnomah", "Washington", "Clackamas")
 
 # The tables will only show data from these years.
-years <- c(2010, 2025, 2040)
+years <- c(2010, 2020, 2025, 2040, 2050)
+# years <- c(2019, 2020, 2025, 2031, 2040, 2043, 2045, 2050)
 
 # The list MPOs to plot - note that in this version "Longview/Kelos/Rainier" and "Walla Walla Valley" are dropped
-MPOs <- c("Albany","Bend", "Corvallis", "Eugene/Springfield","Medford", "METRO", "METRO_CLARK","Middle Rogue", "NonMPO", "Halo", "Salem/Keizer")
+MPOs <- c("Albany","Bend", "Corvallis", "Eugene/Springfield","Medford", "METRO", "METRO_CLARK","Middle Rogue", "NonMPO", "Halo", "Salem/Keizer", "BRM", "CALM", "SOABM")
 
 # The leaflet plots show a comparison between the scenarios in a specific year.
 # Set this to the year you wish to study.
 # diff_year <- 2040
 diff_year <- params$diff_year
+index_year <- params$index_year
 
 # show leaflet plots; FALSE will skip them (saving disk space and time)
 # use_leaflet <- FALSE
 use_leaflet <- params$use_leaflet
+
+# Read the control files
+# County
+county_controls <- read.csv(params$county_control_file)
+colnames(county_controls)[1] <- "county"
+# MPO
+mpo_controls <- read.csv(params$mpo_control_file)
+colnames(mpo_controls)[1] <- "MPOmodeledzones"
 ```
 
 
@@ -81,7 +95,7 @@ kable(scen_info, caption = "Scenario Information")
 
 # Socioeconomics {.tabset}
 
-## Population
+## Map
 
 ```{r leaflet, fig.cap="Change in socioeconomic data over model run."}
 if(use_leaflet){
@@ -91,18 +105,46 @@ if(use_leaflet){
 }
 ```
 
+## Population
+
+
 ```{r se}
-se <- extract_se(db, "MPO") %>%
+se <- extract_se(db, "MPOmodeledzones", controls = mpo_controls) %>%
   filter(year %in% years)
 ```
 
 ```{r tab_pop, results='asis'}
 pop <- se %>% filter(var == "population") %>%
-  yearly_summary(group = "color_var", var = "y")
+  yearly_summary(group = c("color_var"), var = "y")
 
 kable(pop, caption = "Population by MPO", digits = 2)
 ```
 
+```{r tab_pop_forecast, results='asis'}
+pop <- se %>% filter(var == "population") %>%
+  yearly_summary(group = c("color_var"), var = "y", use_forecast = TRUE)
+
+kable(pop[,sort_fields(colnames(pop))], caption = "Population by MPO", digits = 2)
+```
+
+
+```{r plot_se1, fig.cap="Population and employment in selected areas."}
+plot_sevar(db, color_var = facet, color_levels = facet_levels, controls = FALSE, index = TRUE, index_year=index_year)
+```
+
+```{r plot_se1_index, fig.cap="Indexed Population and employment in selected areas."}
+plot_sevar(db, color_var = facet, color_levels = facet_levels, index = TRUE, controls = county_controls, index_year=index_year)
+```
+
+
+```{r plot_pop_mpo_forecast, fig.cap="Population with Forecast- all MPOs.", fig.width=8, fig.height=12}
+plot_sevar(db, color_var = "MPOmodeledzones", controls=mpo_controls, var="population", index_year=index_year)
+```
+
+
+```{r plot_pop_mpo_forecast_index, fig.cap="Indexed population with forecast - all MPOs.", fig.width=8, fig.height=12}
+plot_sevar(db, color_var = "MPOmodeledzones", controls=mpo_controls, index = TRUE, var="population", index_year=index_year)
+```
 
 ## Employment
 ```{r tab_emp, results='asis'}
@@ -112,21 +154,30 @@ emp <- se %>% filter(var == "employment") %>%
 kable(emp, caption = "Employment by MPO", digits = 2)
 ```
 
+```{r tab_emp_forecast, results='asis'}
+emp <- se %>% filter(var == "employment") %>%
+  yearly_summary(group = "color_var", var = "y", use_forecast = TRUE)
 
-```{r plot_se, fig.cap="Population and employment in selected areas."}
-plot_sevar(db, color_var = facet, color_levels = facet_levels, controls = FALSE, index = TRUE)
+kable(emp[,sort_fields(colnames(emp))], caption = "Employment by MPO", digits = 2)
 ```
 
-```{r plot_se_index, fig.cap="Indexed Population and employment in selected areas."}
-plot_sevar(db, color_var = facet, color_levels = facet_levels, index = TRUE, controls = TRUE)
+
+```{r plot_se2, fig.cap="Population and employment in selected areas."}
+plot_sevar(db, color_var = facet, color_levels = facet_levels, controls = FALSE, index = TRUE, index_year=index_year)
 ```
 
-```{r plot_se_mpo, fig.cap="Population and employment - all MPOs."}
-plot_sevar(db, color_var = "MPO")
+```{r plot_se2_index, fig.cap="Indexed Population and employment in selected areas."}
+plot_sevar(db, color_var = facet, color_levels = facet_levels, index = TRUE, controls = county_controls, index_year=index_year)
 ```
 
-```{r plot_se_mpo_index, fig.cap="Indexed population and employment - all MPOs."}
-plot_sevar(db, color_var = "MPO", index = TRUE)
+
+```{r plot_emp_mpo_forecast, fig.cap="Employment with Forecast- all MPOs.", fig.width=8, fig.height=12}
+plot_sevar(db, color_var = "MPOmodeledzones",controls=mpo_controls, var="employment", index_year=index_year)
+```
+
+
+```{r plot_emp_mpo_forecast_index, fig.cap="Indexed employment with forecast - all MPOs.", fig.width=8, fig.height=12}
+plot_sevar(db, color_var = "MPOmodeledzones", controls=mpo_controls, index = TRUE, var="employment", index_year=index_year)
 ```
 
 ## Historical Trends
@@ -171,15 +222,15 @@ kable(vmt, caption = "VMT by MPO", digits = 2)
 
 
 ```{r plot_vmt, fig.cap="VMT by facility type."}
-plot_vmt(db, facet, facet_levels, index = FALSE)
+plot_vmt(db, facet, facet_levels, index = FALSE, index_year=index_year)
 ```
 
 ```{r plot_vmt_index, fig.cap="Indexed VMT by facility type."}
-plot_vmt(db, facet, facet_levels)
+plot_vmt(db, facet, facet_levels, index_year=index_year)
 ```
 
 ```{r plot_vmt_mpo, fig.cap="VMT by facility type - all MPO's."}
-plot_vmt(db, "MPO")
+plot_vmt(db, "MPO", index_year=index_year)
 ```
 
 
@@ -207,11 +258,11 @@ kable(tab_mode, caption = "Metro MPO Trips by Mode", digits = 2)
 ```
 
 ```{r mode_share, fig.cap="Share of trips produced by mode"}
-plot_trips(db, facet, facet_levels, share = TRUE)
+plot_trips(db, facet, facet_levels, share = TRUE, index_year=index_year)
 ```
 
 ```{r mode_share_mpo, fig.cap="Share of trips produced by mode - all MPOs"}
-plot_trips(db,  share = TRUE)
+plot_trips(db,  share = TRUE, index_year=index_year)
 ```
 
 ```{r mode_vol, fig.cap="Total trips produced by mode."}
@@ -219,7 +270,7 @@ plot_trips(db, facet, facet_levels, share = FALSE, index = FALSE)
 ```
 
 ```{r mode_vol_mpo, fig.cap="Total trips produced by mode - all MPOs"}
-plot_trips(db, share = FALSE)
+plot_trips(db, share = FALSE, index_year=index_year)
 ```
 
 
@@ -227,25 +278,25 @@ plot_trips(db, share = FALSE)
 ## TLFD
 
 ```{r plot_tlfd, fig.cap = "Trip length frequency distribution."}
-plot_tlfd(db, facet, facet_levels)
+plot_tlfd(db, facet, facet_levels, index_year=index_year)
 ```
 
 ```{r plot_tlfd_cum, fig.cap = "Cumulative trip length frequency distribution."}
-plot_tlfd(db, facet, facet_levels, cumulative = TRUE)
+plot_tlfd(db, facet, facet_levels, cumulative = TRUE, index_year=index_year)
 ```
 
 ```{r plot_tlfd_mpo, fig.cap = "Trip length frequency distribution - all MPO's."}
-plot_tlfd(db, "MPO", MPOs)
+plot_tlfd(db, "MPO", MPOs, index_year=index_year)
 ```
 
 ## Log Sums
 ```{r plot_logsum, fig.cap = "Destination choice model logsums."}
-plot_logsums(db, facet, facet_levels)
+plot_logsums(db, facet, facet_levels, index_year=index_year)
 ```
 
 ```{r plot_logsum_mpo, fig.cap = "Destination choice model logsums - all MPO's"}
 plot_logsums(db, "MPO", c("Bend", "Corvallis", "EugeneSpringfield",
-               "Metro", "NonMPO", "RogueValley", "SalemKeizer"))
+               "Metro", "NonMPO", "RogueValley", "SalemKeizer"), index_year=index_year)
 ```
 
 
@@ -258,49 +309,49 @@ troubleshoot_aa(db)
 
 ## Built Floorspace
 ```{r plot_floorspace, fig.cap="Floorspace by type."}
-plot_floorspace(db, facet, facet_levels)
+plot_floorspace(db, facet, facet_levels, index_year=index_year)
 ```
 
 ```{r plot_floorspace_mpo, fig.cap="Floorspace by type - all MPO's."}
-plot_floorspace(db)
+plot_floorspace(db, index_year=index_year)
 ```
 
 ## Rent and Occupancy Rate
 ```{r plot_rent, fig.cap = "Unit rent by floorspace type."}
-plot_floorspace(db, facet, facet_levels, price = TRUE)
+plot_floorspace(db, facet, facet_levels, price = TRUE, index_year=index_year)
 ```
 
 ```{r plot_rent_mpo, fig.cap = "Unit rent by floorspace type - all MPO's"}
-plot_floorspace(db, price = TRUE)
+plot_floorspace(db, price = TRUE, index_year=index_year)
 ```
 
 ```{r plot_occupancy, fig.cap = "Occupancy rate by floorspace type."}
-plot_occupancy(db, facet, facet_levels)
+plot_occupancy(db, facet, facet_levels, index_year=index_year)
 ```
 
 ```{r plot_occupancy_mpo, fig.cap = "Occupancy rate by floorspace type - all MPO's"}
-plot_occupancy(db)
+plot_occupancy(db, index_year=index_year)
 ```
 
 
 ## Employment
 
 ```{r plot_employment, fig.cap="Labor output by sector."}
-plot_employment(db, facet, facet_levels)
+plot_employment(db, facet, facet_levels, index_year=index_year)
 ```
 
 ```{r plot_employment_mpo, fig.cap="Labor output by sector - all MPO's."}
-plot_employment(db)
+plot_employment(db, index_year=index_year)
 ```
 
 ## Labor Output
 
 ```{r plot_gdp, fig.cap="Comparison of labor output by sector."}
-plot_gdp(db, facet, facet_levels)
+plot_gdp(db, facet, facet_levels, index_year=index_year)
 ```
 
 ```{r plot_gdp_mpo, fig.cap="Comparison of labor output by sector - all MPO's."}
-plot_gdp(db)
+plot_gdp(db, index_year=index_year)
 ```
 
 ## Labor Force Participation
@@ -308,9 +359,9 @@ plot_gdp(db)
 Specifically, the ratio of workers to individuals 15 or older.
 
 ```{r plot_wapr, fig.cap = "Workforce participation."}
-plot_wapr(db, facet, facet_levels)
+plot_wapr(db, facet, facet_levels, index_year=index_year)
 ```
 
 ```{r plot_wapr_mpo, fig.cap = "Workforce participation."}
-plot_wapr(db, "MPO")
+plot_wapr(db, "MPO", index_year=index_year)
 ```

@@ -1,0 +1,83 @@
+MPOmodeledzones,year,var,y
+BRM,2019,population,155021
+BRM,2045,population,245596
+BRM,2019,employment,76797
+BRM,2045,employment,124396
+CALM,2019,population,171503
+CALM,2043,population,216413
+CALM,2019,employment,73523
+CALM,2043,employment,87203
+SOABM,2020,population,279015
+SOABM,2020,employment,111239
+SOABM,2025,population,294626
+SOABM,2025,employment,119098
+SOABM,2031,population,310349
+SOABM,2031,employment,126818
+SOABM,2040,population,333591
+SOABM,2040,employment,139972
+SOABM,2050,population,366711
+SOABM,2050,employment,154124
+SKATS,2021,population,259002
+SKATS,2021,employment,123116
+SKATS,2050,population,312181
+SKATS,2050,employment,150798
+Metro,2020,population,2384703
+Metro,2020,employment,1192694
+Metro,2030,population,2669698
+Metro,2030,employment,1304460
+Metro,2045,population,3093854
+Metro,2045,employment,1535571
+Astoria,2002,population,22313
+Astoria,2002,employment,9182
+Astoria,2035,population,28334
+Astoria,2035,employment,11083
+Coos Bay,2013,population,33046
+Coos Bay,2013,employment,14435
+Coos Bay,2035,population,35601
+Coos Bay,2035,employment,17880
+Prineville,2019,population,14298
+Prineville,2019,employment,5238
+Prineville,2045,population,17924
+Prineville,2045,employment,5689
+Roseburg,2019,population,48325
+Roseburg,2019,employment,26442
+Roseburg,2045,population,60800
+Roseburg,2045,employment,32987
+Klamath Falls,2008,population,46329
+Klamath Falls,2008,employment,19951
+Klamath Falls,2037,population,56932
+Klamath Falls,2037,employment,24024
+Newport,2018,population,11471
+Newport,2018,employment,11114
+Newport,2040,population,13732
+Newport,2040,employment,13731
+Woodburn,2015,population,25895
+Woodburn,2015,employment,10452
+Woodburn,2040,population,38813
+Woodburn,2040,employment,17748
+Pendleton,2015,population,21207
+Pendleton,2015,employment,10430
+Pendleton,2040,population,22689
+Pendleton,2040,employment,12713
+The Dalles,2010,population,18479
+The Dalles,2010,employment,8588
+The Dalles,2036,population,20748
+The Dalles,2036,employment,9714
+McMinnville,2015,population,43035
+McMinnville,2015,employment,15693
+McMinnville,2041,population,59002
+McMinnville,2041,employment,31394
+McMinnville,2021,population,45888
+McMinnville,2021,employment,16637
+Newberg,2018,population,33780
+Newberg,2018,employment,11169
+Newberg,2040,population,48563
+Newberg,2040,employment,19250
+LCOG,2020,population,275251
+LCOG,2045,population,320684
+LCOG,2020,employment,134698
+LCOG,2045,employment,177263
+LCOG,2024,population,292035
+LCOG,2049,population,331496
+LCOG,2024,employment,130104
+LCOG,2049,employment,169305

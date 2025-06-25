@@ -16,7 +16,10 @@ params:
   ref_name: Reference
   current_name: Current
   facet: COUNTY
-  diff_year: 2012
+  county_control_file: "../../../inputs/t0/county_controls.csv"
+  mpo_control_file: "../../../inputs/t0/mpo_controls.csv"
+  diff_year: 2020
+  index_year: 2020
   use_leaflet: true
 editor_options: 
   chunk_output_type: console
@@ -54,19 +57,28 @@ facet <- params$facet
 facet_levels <-  c("Multnomah", "Washington", "Clackamas")
 
 # The tables will only show data from these years.
-years <- c(2010, 2025, 2040)
+years <- c(2020, 2025, 2040)
 
 # The leaflet plots show a comparison between the scenarios in a specific year.
 # Set this to the year you wish to study. For bridge scenarios, it should be the
 # year after the bridge breaks. For others, it should probably be the last year
 # version of the simulation.
 diff_year <- params$diff_year 
+index_year <- params$index_year 
 
 MPOs <- c("Albany","Bend", "Corvallis", "Eugene/Springfield","Medford", "METRO", "METRO_CLARK","Middle Rogue", "NonMPO", "Halo", "Salem/Keizer")
 MPOs <- c("Bend", "Corvallis", "EugeneSpringfield","Metro", "RougeValley", "NonMPO", "OOO", "SalemKeizer")
 
 # show leaflet plots; FALSE will skip them (saving disk space and time)
 use_leaflet <- params$use_leaflet
+
+# Read the control files
+# County
+county_controls <- read.csv(params$county_control_file)
+colnames(county_controls)[1] <- "county"
+# MPO
+mpo_controls <- read.csv(params$mpo_control_file)
+colnames(mpo_controls)[1] <- "MPOmodeledzones" # To match the field in AllZones in the database
 ```
 
 
@@ -94,8 +106,8 @@ kable(scen_info, caption = "Scenario Information")
 ## Overview
 ```{r se}
 se <- left_join(
-  extract_se(db1, "MPO") %>% rename(reference = y),
-  extract_se(db2, "MPO") %>% rename(current   = y)
+  extract_se(db1, "MPOmodeledzones") %>% rename(reference = y),
+  extract_se(db2, "MPOmodeledzones") %>% rename(current   = y)
 ) %>%
   filter(year %in% years) %>%
   mutate(diff = (current - reference) / reference * 100)
@@ -128,11 +140,15 @@ kable(emp, caption = "Employment by MPO", digits = 2)
 ## Comparison
 
 ```{r compare_se, fig.cap="Comparison of population and employment in selected areas."}
-compare_sevar(db1, db2, color_var = facet, color_levels = facet_levels)
+compare_sevar(db1, db2, color_var = facet, color_levels = facet_levels, index_year=index_year)
 ```
 
 ```{r compare_se_mpo, fig.cap="Comparison of population and employment - all MPOs."}
-compare_sevar(db1, db2, color_var = "MPO")
+compare_sevar(db1, db2, color_var = "MPO", index_year=index_year)
+```
+
+```{r compare_se_mpomodeled, fig.cap="Comparison of population and employment - all MPOs Modeled.", fig.width=8, fig.height=12}
+compare_sevar(db1, db2, color_var = "MPOmodeledzones", index_year=index_year)
 ```
 
 ## Map
@@ -173,11 +189,11 @@ kable(vmt, caption = "VMT by MPO", digits = 2)
 
 
 ```{r compare_vmt, fig.cap="Comparison of VMT by facility type."}
-compare_vmt(db1, db2, facet, facet_levels)
+compare_vmt(db1, db2, facet, facet_levels, index_year=index_year)
 ```
 
 ```{r compare_vmt_mpo, fig.cap="Comparison of VMT by facility type - all MPO's."}
-compare_vmt(db1, db2, "MPO")
+compare_vmt(db1, db2, "MPO", index_year=index_year)
 ```
 
 ## Mode Split
@@ -211,12 +227,12 @@ kable(trips, caption = "Total Trips by MPO", digits = 2)
 
 
 ```{r compare_mode, fig.cap="Comparison of trip productions by mode."}
-compare_trips(db1, db2, facet_var = facet, facet_levels = facet_levels)
+compare_trips(db1, db2, facet_var = facet, facet_levels = facet_levels, index_year=index_year)
 ```
 
 
 ```{r compare_mode_mpo, fig.cap="Comparison of trip productions by mode - all MPOs."}
-compare_trips(db1, db2, facet_var = "MPO")
+compare_trips(db1, db2, facet_var = "MPO", index_year=index_year)
 ```
 
 
@@ -225,21 +241,21 @@ compare_trips(db1, db2, facet_var = "MPO")
 
 
 ```{r compare_tlfd, fig.cap = "Comparison of trip length frequency distribution."}
-compare_tlfd(db1, db2, facet, facet_levels, cumulative = TRUE, years = years)
+compare_tlfd(db1, db2, facet, facet_levels, cumulative = TRUE, years = years, index_year=index_year)
 ```
 
 ```{r compare_tlfd_mpo, fig.cap = "Comparison of trip length frequency distribution - all MPO's."}
-compare_tlfd(db1, db2, "MPO", years = years, cumulative = TRUE, MPOs)
+compare_tlfd(db1, db2, "MPO", years = years, cumulative = TRUE, MPOs, index_year=index_year)
 ```
 
 
 ## Log Sums
 ```{r compare_logsum, fig.cap = "Mode choice model logsums."}
-compare_logsums(db1, db2, facet, facet_levels)
+compare_logsums(db1, db2, facet, facet_levels, index_year=index_year)
 ```
 
 ```{r compare_logsum_mpo, fig.cap = "Mode choice model logsums - all MPO's"}
-compare_logsums(db1, db2, "MPO", MPOs)
+compare_logsums(db1, db2, "MPO", MPOs, index_year=index_year)
 ```
 
 # Economics{.tabset}
@@ -247,47 +263,47 @@ compare_logsums(db1, db2, "MPO", MPOs)
 ## Built Floorspace
 
 ```{r compare_floorspace, fig.cap="Comparison of floorspace by type."}
-compare_floorspace(db1, db2, facet, facet_levels)
+compare_floorspace(db1, db2, facet, facet_levels, index_year=index_year)
 ```
 
 ```{r compare_floorspace_mpo, fig.cap="Comparison of floorspace by type - all MPO's."}
-compare_floorspace(db1, db2)
+compare_floorspace(db1, db2, index_year=index_year)
 ```
 
 ## Rent and occupancy rates
 ```{r compare_rent, fig.cap = "Unit rent by floorspace type."}
-compare_floorspace(db1, db2, facet, facet_levels, price = TRUE)
+compare_floorspace(db1, db2, facet, facet_levels, price = TRUE, index_year=index_year)
 ```
 
 ```{r compare_rent_mpo, fig.cap = "Unit rent by floorspace type - all MPO's"}
-compare_floorspace(db1, db2, price = TRUE)
+compare_floorspace(db1, db2, price = TRUE, index_year=index_year)
 ```
 
 ```{r compare_occupancy, fig.cap = "Occupancy rate by floorspace type."}
-compare_occupancy(db1, db2, facet, facet_levels)
+compare_occupancy(db1, db2, facet, facet_levels, index_year=index_year)
 ```
 
 ```{r compare_occupancy_mpo, fig.cap = "Occupancy rate by floorspace type - all MPO's"}
-compare_occupancy(db1, db2)
+compare_occupancy(db1, db2, index_year=index_year)
 ```
 
 ## Employment
 
 ```{r compare_employment, fig.cap="Comparison of labor output by sector."}
-compare_employment(db1, db2, facet, facet_levels)
+compare_employment(db1, db2, facet, facet_levels, index_year=index_year)
 ```
 
 ```{r compare_employment_mpo, fig.cap="Comparison of labor output by sector - all MPO's."}
-compare_employment(db1, db2)
+compare_employment(db1, db2, index_year=index_year)
 ```
 
 ## GDP
 ```{r compare_gdp, fig.cap="Comparison of labor output by sector."}
-compare_gdp(db1, db2, facet, facet_levels)
+compare_gdp(db1, db2, facet, facet_levels, index_year=index_year)
 ```
 
 ```{r compare_gdp_mpo, fig.cap="Comparison of labor output by sector - all MPO's."}
-compare_gdp(db1, db2)
+compare_gdp(db1, db2, index_year=index_year)
 ```
 
 
@@ -295,9 +311,9 @@ compare_gdp(db1, db2)
 
 
 ```{r compare_wapr, fig.cap="Comparison of workforce participation by sector."}
-compare_wapr(db1, db2, facet, facet_levels)
+compare_wapr(db1, db2, facet, facet_levels, index_year=index_year)
 ```
 
 ```{r compare_wapr_mpo, fig.cap="Comparison of workforce participation by sector - all MPO's."}
-compare_wapr(db1, db2, "MPO")
+compare_wapr(db1, db2, "MPO", index_year=index_year)
 ```
