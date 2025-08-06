@@ -2,11 +2,13 @@ package com.pb.tlumip.ta;
 
 import com.pb.common.matrix.Matrix;
 import com.pb.common.matrix.ZipMatrixWriter;
+import com.pb.common.matrix.ZipMatrixReader;
 import com.pb.common.util.ResourceUtil;
 import com.pb.models.pt.TripModeType;
 import com.pb.models.pt.ldt.LDTripModeType;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -27,6 +29,9 @@ public class DemandBuilder {
     public static final String LDT_TRIP_FILE_PROPERTY = "ldt.vehicle.trips";
     public static final String CT_TRIP_FILE_PROPERTY = "ct.truck.trips";
     public static final String ET_TRIP_FILE_PROPERTY = "et.truck.trips";
+
+    public static final String CT_TRIP_SKIM_PROPERTY = "ct.travel.time.skims";
+    public static final String PT_TRIP_SKIM_PROPERTY = "pt.car.peak.skims";
 
     public static final double AVERAGE_SR3P_AUTO_OCCUPANCY = 3.33f;
 
@@ -88,6 +93,19 @@ public class DemandBuilder {
         return zoneIndex;
     }
 
+    private float[][] readTruckSkims() {
+        String ctSkimFile = resourceBundle.getString(CT_TRIP_SKIM_PROPERTY);
+        Matrix ctSkimMatrix = new ZipMatrixReader(new File(ctSkimFile)).readMatrix();
+        return ctSkimMatrix.getValues();
+    }
+
+    private float[][] readAutoSkims() {
+    	String ctSkimFile = resourceBundle.getString(CT_TRIP_SKIM_PROPERTY);
+        String ptSkimFile = Paths.get(Paths.get(ctSkimFile).getParent().toString(), resourceBundle.getString(PT_TRIP_SKIM_PROPERTY).split(", ")[0]+".zmx").toString();
+        Matrix ptSkimMatrix = new ZipMatrixReader(new File(ptSkimFile)).readMatrix();
+        return ptSkimMatrix.getValues();
+    }
+
     private TimePeriod[] buildTimePeriodMapping() {
         int timeSize = 2400+1;
         TimePeriod[] timePeriodMapping = new TimePeriod[timeSize];
@@ -103,6 +121,19 @@ public class DemandBuilder {
         return timePeriodMapping;
     }
 
+    private int newStartTime(String tripStartTime, int duration) {
+    	String[] timeParts =  Double.toString(Double.parseDouble(tripStartTime)/100).split("\\.");
+    	int hours = Integer.parseInt(timeParts[0]);
+    	int minutes = Integer.parseInt(timeParts[1]);
+    	int halfDuration = duration/2;
+    	minutes += halfDuration;
+    	hours += minutes/60;
+    	minutes %= 60;
+    	hours %= 24;
+    	int updatedStartTime = (hours * 100) + minutes;
+        return updatedStartTime;
+    }
+
     private void readIndividualTripFile(String tripFile, Map<AssignMode,Map<TimePeriod,double[][]>> trips, Map<Integer,Integer> zonesIndexMap) {
         TimePeriod[] timePeriodMapping = buildTimePeriodMapping();
         try (BufferedReader reader = new BufferedReader(new FileReader(tripFile))) {
@@ -110,7 +141,9 @@ public class DemandBuilder {
             int dest = -1;
             int time = -1;
             int mode = -1;
+            int duration = -1;
             String line;
+            float[][] ptSkims = readAutoSkims();
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 if (origin < 0) {
@@ -125,15 +158,25 @@ public class DemandBuilder {
                             time = i;
                         if (column.equalsIgnoreCase("tripMode"))
                             mode = i;
+                        if (column.equalsIgnoreCase("time"))
+                            duration = i;
                     }
                     continue;
                 }
                 int o = zonesIndexMap.get(Integer.parseInt(data[origin]));
                 int d = zonesIndexMap.get(Integer.parseInt(data[dest]));
-                TimePeriod t = timePeriodMapping[Integer.parseInt(data[time])];
+                float traveltime = ptSkims[o][d];
                 Mode m = Mode.getModeForModeString(data[mode]);
                 if (m == null)
                     continue;
+                TimePeriod t = timePeriodMapping[newStartTime(data[time], (int) traveltime)];
+                switch (m) {
+                	case DA: break;
+                	case SR2: break;
+                	case SR3P: break;
+                	case INTERCITY : t = timePeriodMapping[newStartTime(data[time], (int) Double.parseDouble(data[duration]))];
+                	case INTRACITY : t = timePeriodMapping[newStartTime(data[time], (int) Double.parseDouble(data[duration]))];          
+                }
                 double trip = 1;
                 switch (m) {
                     case DA : break;
@@ -162,7 +205,9 @@ public class DemandBuilder {
             int time = -1;
             int truckType = -1;
             int trucks = -1;
+            int duration = -1;
             String line;
+            float[][] ctSkims = readTruckSkims();
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 if (origin < 0) {
@@ -179,12 +224,15 @@ public class DemandBuilder {
                             truckType = i;
                         if (column.equalsIgnoreCase("truckVolume"))
                             trucks = i;
+                        if (column.equalsIgnoreCase("travelTime"))
+                        	duration = i;
                     }
                     continue;
                 }
                 int o = zonesIndexMap.get(Integer.parseInt(data[origin]));
                 int d = zonesIndexMap.get(Integer.parseInt(data[dest]));
-                TimePeriod t = timePeriodMapping[Integer.parseInt(data[time]) % 2400];
+                float traveltime = ctSkims[o][d];
+                TimePeriod t = timePeriodMapping[newStartTime(data[time], (int) traveltime)];
                 double trip = (trucks > -1) ? Double.parseDouble(data[trucks]) : 1.0f;
                 trips.get(AssignMode.TRUCK).get(t)[o][d] += trip;
             }

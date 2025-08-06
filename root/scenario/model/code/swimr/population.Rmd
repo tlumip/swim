@@ -9,12 +9,15 @@ output:
     theme: spacelab
 params:
   fig.path: fig-population/
-  ref_db: D:/Projects/Clients/OR_DOT/SWIM_WOC7/Data/fromClient/Database/Ref26_NoFB.db
-  current_db: D:/Projects/Clients/OR_DOT/SWIM_WOC7/Data/FromClient/Database/Ref26_RRA2_FB_half.db
-  compare_db: D:/Projects/Clients/OR_DOT/SWIM_WOC7/Data/FromClient/Database/Ref26_RRA2_FB_half.db
+  ref_db: Q:/Projects/OR/Oregon DOT/SWIM_WOC7/Data/fromClient/Database/Ref26_NoFB.db
+  current_db: D:/Projects/Clients/OR_DOT/SWIM_26_WOC1/Tasks/Task4_contingency/swimr_test/swim_model/scenario/outputs/scenario.db
+  compare_db: Q:/Projects/OR/Oregon DOT/SWIM_WOC7/Data/fromClient/Database/Ref26_RRA2_FB_half.db
   ref_name: Reference
   current_name: Current
   compare_name: Compare
+  index_year: 2020
+  county_control_file: "../../../inputs/t0/county_controls.csv"
+  mpo_control_file: "../../../inputs/t0/mpo_controls.csv"
 editor_options: 
   chunk_output_type: console
 ---
@@ -43,6 +46,16 @@ dbset <- list(ref, db1, db3)
 db_names <- c(
   params$ref_name, params$current_name, params$compare_name
 )
+
+index_year <- params$index_year
+
+# Read the control files
+# County
+county_controls <- read.csv(params$county_control_file)
+colnames(county_controls)[1] <- "county"
+# MPO
+mpo_controls <- read.csv(params$mpo_control_file)
+colnames(mpo_controls)[1] <- "MPOmodeledzones"
 ```
 
 ```{r load_zones, echo=TRUE}
@@ -74,7 +87,7 @@ for(r in regions){
 
   p <- multiple_sevar(dbset, db_names, variable = "population",    
                       facet_var = "COUNTY",
-                      facet_levels = unique(counties$COUNTY)) +
+                      facet_levels = unique(counties$COUNTY), index_year=index_year) +
     ggtitle(paste("Region", r)) + theme(legend.position = "bottom")
   
   print(p)
@@ -95,7 +108,7 @@ for(r in regions){
   counties <- zones_data %>% filter(DOT_REGION == r)
   
   p <- multiple_sevar(dbset, db_names, variable = "employment",   
-                      facet_var = "COUNTY",  facet_levels = counties$COUNTY)
+                      facet_var = "COUNTY",  facet_levels = counties$COUNTY, index_year=index_year)
   
   print(p + ggtitle(paste("Region", r)) + theme(legend.position = "bottom"))
 }
@@ -108,7 +121,7 @@ for(r in regions){
   counties <- zones_data %>% filter(DOT_REGION == r)
   
   p <- multiple_employment(dbset, db_names,
-                           facet_var = "COUNTY", facet_levels = counties$COUNTY)
+                           facet_var = "COUNTY", facet_levels = counties$COUNTY, index_year=index_year)
   
   print(p + ggtitle(paste("Region", r)) + theme(legend.position = "bottom"))
 }
@@ -121,7 +134,7 @@ for(r in regions){
   counties <- zones_data %>% filter(DOT_REGION == r)
   
   p <- multiple_wapr(dbset, db_names, 
-                     facet_var = "COUNTY", facet_levels = counties$COUNTY)
+                     facet_var = "COUNTY", facet_levels = counties$COUNTY, index_year=index_year)
   
   print(p + ggtitle(paste("Region", r)) + theme(legend.position = "bottom"))
 }
@@ -137,7 +150,7 @@ for(r in regions){
   
   p <- multiple_floorspace(dbset = dbset, db_names = db_names,
                            variable = 'floorspace',
-                           facet_var = "COUNTY", facet_levels = counties$COUNTY)
+                           facet_var = "COUNTY", facet_levels = counties$COUNTY, index_year=index_year)
   
   print(p + ggtitle(paste("Region", r)) + theme(legend.position = "bottom"))
 }

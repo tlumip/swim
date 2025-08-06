@@ -36,7 +36,7 @@ output_folder = os.path.dirname(out_zip_file)
 continuoustt = int(properties['sl.continuous.travel.time']) #mins
 breaktime = int(properties['sl.break.time']) #mins
 useSkims = properties['sl.use.skims']
-mclsmatrixdir = properties['skim.data']
+mclsmatrixdir = properties['sl.skim.data']
 
 
 def unzip_output():
