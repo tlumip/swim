@@ -78,7 +78,7 @@ def add_time_period(time, time_periods):
 
 
 def format_tables(ldtv, sdtp, ct, mode_map, per_to_veh, time_periods, swim_to_lcog_xwalk=None, ext_zones=np.arange(1,24)):
-    cols = ['tripMode', 'EXTERNAL_ZONE_ORIGIN', 'EXTERNAL_ZONE_DESTINATION', 'tripStartTime']
+    cols = ['tripMode', 'EXTERNAL_ZONE_ORIGIN', 'EXTERNAL_ZONE_DESTINATION', 'tripStartTime', 'origin', 'destination']
 
     auto = pd.concat([ldtv[cols], sdtp[cols]], axis=0)
     
@@ -90,6 +90,10 @@ def format_tables(ldtv, sdtp, ct, mode_map, per_to_veh, time_periods, swim_to_lc
         # Fill missing values
         trips[df]['EXTERNAL_ZONE_ORIGIN'] = trips[df]['EXTERNAL_ZONE_ORIGIN'].fillna('-1')
         trips[df]['EXTERNAL_ZONE_DESTINATION'] = trips[df]['EXTERNAL_ZONE_DESTINATION'].fillna('-1')
+        origin_filter = trips[df]['EXTERNAL_ZONE_ORIGIN']=='null'
+        trips[df].loc[origin_filter,'EXTERNAL_ZONE_ORIGIN'] = trips[df].loc[origin_filter,'origin'].astype(str)
+        dest_filter = trips[df]['EXTERNAL_ZONE_DESTINATION']=='null'
+        trips[df].loc[dest_filter,'EXTERNAL_ZONE_DESTINATION'] = trips[df].loc[dest_filter,'destination'].astype(str)
         
         # Convert zone to int and define time period
         trips[df]['ext_origin'] = trips[df]['EXTERNAL_ZONE_ORIGIN'].apply(convert_zone_to_int)
