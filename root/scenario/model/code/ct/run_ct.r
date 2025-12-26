@@ -98,9 +98,6 @@ allocated_faf_trips <- swimctr::allocate_faf_to_zones(daily_faf_trucks, firms,
 hourly_faf_trips <- swimctr::temporal_allocation(allocated_faf_trips,
   RTP[["ct.temporal.factors"]])
   
-# Rename exp_value to value because that's what is being dumped out by the
-# export_trip_list_function
-hourly_faf_trips <- hourly_faf_trips %>% mutate(value=exp_value)
 
 # [5] EXPORT TRUCK TRIP LIST
 # Write a combined trip list with all of the attributes that Ben had formerly
